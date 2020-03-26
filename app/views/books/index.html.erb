@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WebCampBackendNew</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<h1><strong>Books</strong></h1>
+	<% @books.each do |book| %>
+	<p><strong>Title</strong></p>
+	<span><%= book.title %></span>
+	<p><strong>Body</strong></p>
+	<span><%= book.body %></span>
+	<%= link_to "Show",book_path(book.id)%>
+	<%= link_to "Edit",edit_book_path(book.id) %>
+	<%= link_to "Destroy",book_path(book.id), method: :delete %>
+	<%end%>
+
+	<h2><strong>New book</strong></h2>
+	<%= form_for(@book,url: '/books') do |f| %>
+	<p>Title</p>
+	<%= f.text_field :title %>
+	<p>Body</p>
+	<%= f.text_area :body %><br>
+	<%= f.submit "Create Book" %>
+	<% end %>
+</body>
+</html>
