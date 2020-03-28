@@ -7,24 +7,35 @@
 	<link rel="stylesheet" href="">
 </head>
 <body>
-	<h1><strong>Books</strong></h1>
-	<% @books.each do |book| %>
-	<p><strong>Title</strong></p>
-	<span><%= book.title %></span>
-	<p><strong>Body</strong></p>
-	<span><%= book.body %></span>
-	<%= link_to "Show",book_path(book.id)%>
-	<%= link_to "Edit",edit_book_path(book.id) %>
-	<%= link_to "Destroy",book_path(book.id), method: :delete %>
-	<%end%>
+	<h1>Books</h1>
+	<table>
+	　<thead>
+	　　<tr>
+		 <th>Title</th>
+		 <th>Body</th>
+		 <th></th>
+	　　</tr>
+      </thead>
+      <tbody>
+	   <tr>	<% @books.each do |book| %>
+	    <td><%= book.title %></td>
+	    <td><%= book.body %></td>
+	    <span class="show">
+	    <td><%= link_to "Show",book_path(book.id)%>  <%= link_to "Edit",edit_book_path(book.id) %>  <%= link_to "Destroy",book_path(book.id), method: :delete %></td></span>
+	   </tr>
+	   <%end%>
+	</tbody>
+	</table>
 
-	<h2><strong>New book</strong></h2>
-	<%= form_for(@book,url: '/books') do |f| %>
-	<p>Title</p>
-	<%= f.text_field :title %>
-	<p>Body</p>
-	<%= f.text_area :body %><br>
-	<%= f.submit "Create Book" %>
-	<% end %>
+	<div class="newbook">
+		<h2>New book</h2>
+		<%= form_for(@book,url: '/books') do |f| %>
+		<p>Title</p>
+		<%= f.text_field :title %>
+		<p>Body</p>
+		<%= f.text_area :body %><br>
+		<%= f.submit "Create Book" %>
+		<% end %>
+	</div>
 </body>
 </html>
