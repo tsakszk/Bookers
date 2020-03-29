@@ -11,12 +11,18 @@ class BooksController < ApplicationController
   def create
     book = Book.new(book_params)
     if book.save
-     flash[:notice] = "Book was successfully destroyed."
+     flash[:notice] = 'Book was successfully created.'
      redirect_to book_path(book)
+    else
+      render plain: book.errors.inspect
     end
   end
+
   def show
     @book = Book.find(params[:id])
+    if @book.save
+     flash[:notice] = "Book was successfully destroyed."
+    end
   end
 
   def edit
